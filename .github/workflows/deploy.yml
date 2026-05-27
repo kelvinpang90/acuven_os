@@ -1,0 +1,67 @@
+name: Deploy company site
+
+on:
+  push:
+    branches: [main]
+    paths-ignore:
+      - "**.md"
+      - "deploy/**"
+      - ".gitignore"
+  workflow_dispatch:
+
+concurrency:
+  group: deploy-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Stage static files
+        # Static site: just copy index.html + public/ assets into a stage dir.
+        # No build step needed — the page is self-contained HTML.
+        run: |
+          mkdir -p stage
+          cp index.html stage/
+          if [ -d public ] && [ "$(ls -A public)" ]; then
+            cp -r public/. stage/
+          fi
+          ls -la stage/
+
+      - name: Deploy to VPS via rsync over SSH
+        uses: easingthemes/ssh-deploy@v5.1.0
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+          REMOTE_HOST: ${{ secrets.SSH_HOST }}
+          REMOTE_USER: ${{ secrets.SSH_USER }}
+          REMOTE_PORT: ${{ secrets.SSH_PORT }}
+          SOURCE: "stage/"
+          TARGET: ${{ secrets.DEPLOY_PATH }}
+          # --delete removes files no longer in source
+          # --chmod ensures nginx can read
+          ARGS: "-rltgoDzvO --delete --chmod=Du=rwx,Dgo=rx,Fu=rw,Fgo=r"
+
+      - name: Smoke test
+        env:
+          SITE_URL: ${{ secrets.SITE_URL }}
+        run: |
+          if [ -z "$SITE_URL" ]; then
+            echo "⚠️ SITE_URL secret not set — skipping smoke test"
+            exit 0
+          fi
+          for i in 1 2 3; do
+            code=$(curl -sk -o /dev/null -w "%{http_code}" "$SITE_URL")
+            if [ "$code" = "200" ]; then
+              echo "✅ $SITE_URL responding 200"
+              exit 0
+            fi
+            echo "Attempt $i: got $code, retrying..."
+            sleep 5
+          done
+          echo "❌ Smoke test failed"
+          exit 1

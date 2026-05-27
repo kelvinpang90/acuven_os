@@ -1,0 +1,1190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Acuven Technology | Custom Business Systems &amp; AI Automation</title>
+  <meta name="description" content="We build custom ERP, CRM, and AI-powered systems that help businesses streamline operations and grow faster. Based in Malaysia." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    /* ── Reset & Base ─────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:       #0a0a0a;
+      --bg2:      #111111;
+      --bg3:      #1a1a1a;
+      --border:   rgba(255,255,255,0.07);
+      --text:     #ffffff;
+      --text2:    #888888;
+      --text3:    #444444;
+      --accent:   #6366f1;
+      --accent-h: #818cf8;
+      --green:    #22c55e;
+      --yellow:   #f59e0b;
+      --r:        12px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    a { text-decoration: none; color: inherit; }
+
+    /* ── Utility ──────────────────────────────── */
+    .container { max-width: 1100px; margin: 0 auto; }
+
+    .label {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 18px;
+    }
+    .label::before {
+      content: '';
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--accent);
+      flex-shrink: 0;
+    }
+
+    section { padding: 96px 24px; }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity .65s ease, transform .65s ease;
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* ── Buttons ──────────────────────────────── */
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      background: var(--accent);
+      color: #fff;
+      padding: 14px 28px;
+      border-radius: 10px;
+      font-size: 15px;
+      font-weight: 600;
+      transition: background .2s, transform .2s, box-shadow .2s;
+    }
+    .btn-primary:hover {
+      background: var(--accent-h);
+      transform: translateY(-2px);
+      box-shadow: 0 10px 28px rgba(99,102,241,.35);
+    }
+
+    .btn-outline {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      background: transparent;
+      color: var(--text);
+      padding: 14px 28px;
+      border-radius: 10px;
+      font-size: 15px;
+      font-weight: 600;
+      border: 1px solid var(--border);
+      transition: border-color .2s, background .2s;
+    }
+    .btn-outline:hover { border-color: var(--text3); background: var(--bg3); }
+
+    .btn-wa {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: #25d366;
+      color: #fff;
+      padding: 14px 28px;
+      border-radius: 10px;
+      font-size: 15px;
+      font-weight: 600;
+      transition: background .2s, transform .2s, box-shadow .2s;
+    }
+    .btn-wa:hover {
+      background: #22bf5c;
+      transform: translateY(-2px);
+      box-shadow: 0 10px 28px rgba(37,211,102,.35);
+    }
+
+    /* ── Nav ──────────────────────────────────── */
+    nav {
+      position: fixed;
+      inset: 0 0 auto;
+      z-index: 200;
+      padding: 0 24px;
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      background: rgba(10,10,10,.8);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 64px;
+    }
+    .nav-logo { font-weight: 800; font-size: 18px; letter-spacing: -.5px; }
+    .nav-logo span { color: var(--accent); }
+    .nav-links { display: flex; gap: 28px; list-style: none; }
+    .nav-links a { color: var(--text2); font-size: 14px; font-weight: 500; transition: color .2s; }
+    .nav-links a:hover { color: var(--text); }
+    .nav-cta {
+      background: var(--accent);
+      color: #fff !important;
+      padding: 8px 18px;
+      border-radius: 8px;
+      font-size: 14px !important;
+      font-weight: 600 !important;
+      transition: background .2s;
+    }
+    .nav-cta:hover { background: var(--accent-h) !important; }
+
+    .nav-lang {
+      background: rgba(99,102,241,.1);
+      border: 1px solid rgba(99,102,241,.25);
+      color: var(--accent-h);
+      padding: 6px 12px;
+      border-radius: 8px;
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background .2s, color .2s, border-color .2s;
+      font-family: inherit;
+      letter-spacing: .5px;
+    }
+    .nav-lang:hover { background: rgba(99,102,241,.2); color: #fff; }
+    .nav-right { display: flex; align-items: center; gap: 14px; }
+    @media(max-width:768px){ .nav-right{ gap:10px; } }
+
+    /* ── Hero ─────────────────────────────────── */
+    #hero {
+      padding-top: 160px;
+      padding-bottom: 80px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-glow {
+      position: absolute;
+      width: 900px; height: 900px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(99,102,241,.07) 0%, transparent 65%);
+      top: 50%; left: 50%;
+      transform: translate(-50%, -58%);
+      pointer-events: none;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      background: rgba(99,102,241,.1);
+      border: 1px solid rgba(99,102,241,.25);
+      border-radius: 100px;
+      padding: 7px 16px;
+      font-size: 13px;
+      color: var(--accent-h);
+      margin-bottom: 36px;
+      font-weight: 500;
+    }
+    .hero-badge .dot {
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      background: var(--green);
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.35} }
+
+    h1 {
+      font-size: clamp(36px, 6.5vw, 74px);
+      font-weight: 900;
+      line-height: 1.06;
+      letter-spacing: -2.5px;
+      margin-bottom: 24px;
+      max-width: 820px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    h1 .hl {
+      background: linear-gradient(130deg, #6366f1 0%, #a78bfa 60%, #c4b5fd 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-sub {
+      font-size: 18px;
+      color: var(--text2);
+      max-width: 520px;
+      margin: 0 auto 18px;
+      line-height: 1.75;
+    }
+
+    .hero-tags {
+      display: flex;
+      gap: 8px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 48px;
+    }
+    .tag {
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 5px 13px;
+      font-size: 13px;
+      color: var(--text2);
+      font-weight: 500;
+    }
+
+    .hero-actions { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+
+    .hero-stats {
+      display: flex;
+      justify-content: center;
+      margin-top: 72px;
+      padding-top: 48px;
+      border-top: 1px solid var(--border);
+      flex-wrap: wrap;
+    }
+    .stat { text-align: center; padding: 0 40px; border-right: 1px solid var(--border); }
+    .stat:last-child { border-right: none; }
+    .stat-n {
+      font-size: 36px; font-weight: 900; letter-spacing: -1.5px;
+      background: linear-gradient(130deg, #fff 0%, #aaa 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .stat-l { font-size: 13px; color: var(--text2); margin-top: 4px; }
+
+    /* ── Industries ───────────────────────────── */
+    #industries {
+      padding: 40px 24px;
+      background: var(--bg2);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+    .ind-label {
+      text-align: center; font-size: 12px; color: var(--text3);
+      font-weight: 600; text-transform: uppercase; letter-spacing: 1.5px;
+      margin-bottom: 22px;
+    }
+    .ind-row { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
+    .ind-chip {
+      display: flex; align-items: center; gap: 8px;
+      background: var(--bg3); border: 1px solid var(--border);
+      border-radius: 8px; padding: 10px 18px;
+      font-size: 13px; font-weight: 500; color: var(--text2);
+      transition: border-color .2s, color .2s;
+    }
+    .ind-chip:hover { border-color: rgba(99,102,241,.4); color: var(--text); }
+
+    /* ── Services ─────────────────────────────── */
+    #services { background: var(--bg); }
+
+    .sec-head { margin-bottom: 56px; }
+    .sec-head h2 {
+      font-size: clamp(28px, 4vw, 50px);
+      font-weight: 800; letter-spacing: -1.5px; line-height: 1.1; margin-bottom: 14px;
+    }
+    .sec-head p { color: var(--text2); font-size: 16px; max-width: 460px; }
+
+    .srv-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+    @media(max-width:900px){ .srv-grid{ grid-template-columns: repeat(2,1fr); } }
+    @media(max-width:580px){ .srv-grid{ grid-template-columns: 1fr; } }
+
+    .srv-card {
+      background: var(--bg2); border: 1px solid var(--border);
+      border-radius: var(--r); padding: 30px;
+      transition: border-color .2s, transform .2s;
+    }
+    .srv-card:hover { border-color: rgba(99,102,241,.4); transform: translateY(-4px); }
+    .srv-icon {
+      width: 46px; height: 46px; background: rgba(99,102,241,.1);
+      border-radius: 10px; display: flex; align-items: center;
+      justify-content: center; font-size: 22px; margin-bottom: 20px;
+    }
+    .srv-card h3 { font-size: 17px; font-weight: 700; letter-spacing: -.4px; margin-bottom: 10px; }
+    .srv-card p { color: var(--text2); font-size: 14px; line-height: 1.75; margin-bottom: 18px; }
+    .srv-feats { display: flex; flex-direction: column; gap: 7px; }
+    .srv-feat { display: flex; align-items: flex-start; gap: 8px; font-size: 13px; color: var(--text2); }
+    .srv-feat::before { content:'✓'; color:var(--green); font-weight:700; flex-shrink:0; margin-top:1px; }
+
+    /* ── Showcase ─────────────────────────────── */
+    #showcase { background: var(--bg2); }
+
+    .show-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    @media(max-width:700px){ .show-grid{ grid-template-columns: 1fr; } }
+
+    .show-card {
+      background: var(--bg3); border: 1px solid var(--border);
+      border-radius: var(--r); overflow: hidden;
+      transition: transform .2s, box-shadow .2s;
+    }
+    .show-card:hover { transform: translateY(-5px); box-shadow: 0 20px 48px rgba(0,0,0,.4); }
+    a.show-card { display: block; color: inherit; cursor: pointer; position: relative; }
+    a.show-card:hover { border-color: rgba(99,102,241,.5); opacity: 1; }
+    a.show-card:hover .demo-badge { background: var(--accent); color: #fff; }
+    .demo-badge {
+      position: absolute; top: 14px; right: 14px; z-index: 2;
+      display: inline-flex; align-items: center; gap: 5px;
+      background: rgba(99,102,241,.15); border: 1px solid rgba(99,102,241,.35);
+      color: var(--accent-h);
+      padding: 5px 11px; border-radius: 20px;
+      font-size: 11px; font-weight: 700; letter-spacing: .5px;
+      transition: background .2s, color .2s;
+      backdrop-filter: blur(8px);
+    }
+    .demo-badge.mock {
+      background: rgba(255,255,255,.05); color: var(--text2);
+      border-color: var(--border);
+    }
+    .show-card.wide { grid-column: span 2; }
+    @media(max-width:700px){ .show-card.wide{ grid-column: span 1; } }
+
+    /* Mockup */
+    .mock-area {
+      background: #0d0d0d; border-bottom: 1px solid var(--border);
+      padding: 28px; min-height: 230px;
+      display: flex; align-items: center; justify-content: center;
+    }
+
+    /* CRM */
+    .m-crm { display: flex; gap: 12px; width: 100%; max-width: 560px; }
+    .m-sidebar {
+      width: 130px; background: rgba(255,255,255,.03);
+      border: 1px solid var(--border); border-radius: 8px;
+      padding: 14px; flex-shrink: 0;
+      display: flex; flex-direction: column; gap: 8px;
+    }
+    .m-sb-row { height: 7px; background: rgba(255,255,255,.08); border-radius: 4px; }
+    .m-sb-row.a { background: rgba(99,102,241,.5); width: 75%; }
+    .m-main { flex: 1; display: flex; flex-direction: column; gap: 9px; }
+    .m-stat-row { display: flex; gap: 8px; }
+    .m-stat {
+      flex: 1; background: rgba(255,255,255,.03);
+      border: 1px solid var(--border); border-radius: 6px; padding: 10px;
+    }
+    .m-stat-v { font-size: 15px; font-weight: 700; margin-bottom: 2px; }
+    .m-stat-l { font-size: 9px; color: var(--text3); text-transform: uppercase; letter-spacing: .5px; }
+    .m-table {
+      background: rgba(255,255,255,.03);
+      border: 1px solid var(--border); border-radius: 6px; overflow: hidden;
+    }
+    .m-row {
+      display: flex; align-items: center; gap: 8px;
+      padding: 7px 10px; border-bottom: 1px solid var(--border);
+    }
+    .m-row:last-child { border-bottom: none; }
+    .m-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--green); flex-shrink: 0; }
+    .m-line { height: 6px; background: rgba(255,255,255,.09); border-radius: 3px; flex: 1; }
+    .m-badge {
+      background: rgba(34,197,94,.15); color: var(--green);
+      font-size: 9px; padding: 2px 6px; border-radius: 3px; font-weight: 700; flex-shrink: 0;
+    }
+    .m-badge.warn { background: rgba(245,158,11,.15); color: var(--yellow); }
+
+    /* Bar chart */
+    .m-chart { display: flex; flex-direction: column; gap: 10px; width: 100%; max-width: 320px; }
+    .m-chart-head { display: flex; justify-content: space-between; }
+    .m-chart-head span { font-size: 10px; color: var(--text2); }
+    .m-bars { display: flex; align-items: flex-end; gap: 7px; height: 90px; }
+    .m-bar { flex: 1; background: rgba(99,102,241,.2); border-radius: 4px 4px 0 0; transition: background .2s; }
+    .m-bar:hover { background: rgba(99,102,241,.45); }
+    .m-mini-row { display: flex; gap: 8px; }
+    .m-mini {
+      flex: 1; background: rgba(255,255,255,.03);
+      border: 1px solid var(--border); border-radius: 6px; padding: 8px;
+    }
+    .m-mini-v { font-size: 12px; font-weight: 700; margin-bottom: 1px; }
+    .m-mini-l { font-size: 9px; color: var(--text3); text-transform: uppercase; }
+
+    /* Chat */
+    .m-chat {
+      width: 100%; max-width: 270px;
+      background: rgba(255,255,255,.03); border: 1px solid var(--border);
+      border-radius: 10px; padding: 14px;
+    }
+    .m-chat-head {
+      display: flex; align-items: center; gap: 8px;
+      margin-bottom: 14px; padding-bottom: 12px; border-bottom: 1px solid var(--border);
+    }
+    .m-avatar {
+      width: 28px; height: 28px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent), #a78bfa);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 13px; flex-shrink: 0;
+    }
+    .m-chat-name { font-size: 12px; font-weight: 600; }
+    .m-online { font-size: 10px; color: var(--green); margin-top: 1px; }
+    .m-msgs { display: flex; flex-direction: column; gap: 10px; }
+    .m-msg {
+      background: rgba(255,255,255,.05); border-radius: 8px 8px 8px 2px;
+      padding: 8px 11px; font-size: 11px; color: var(--text2);
+      max-width: 90%; line-height: 1.55;
+    }
+    .m-msg.me {
+      background: rgba(99,102,241,.15); border-radius: 8px 8px 2px 8px;
+      align-self: flex-end; color: var(--text);
+    }
+
+    .show-info { padding: 20px 24px; }
+    .show-tag { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.2px; color: var(--accent); margin-bottom: 6px; }
+    .show-info h3 { font-size: 16px; font-weight: 700; letter-spacing: -.3px; margin-bottom: 6px; }
+    .show-info p { font-size: 13px; color: var(--text2); line-height: 1.65; }
+
+    /* ── Process ──────────────────────────────── */
+    #process { background: var(--bg); }
+
+    .proc-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
+    @media(max-width:800px){ .proc-wrap{ grid-template-columns: 1fr; gap: 40px; } }
+
+    .proc-steps { display: flex; flex-direction: column; }
+    .proc-step {
+      display: grid; grid-template-columns: 72px 1fr;
+      gap: 24px; padding: 36px 0; border-bottom: 1px solid var(--border);
+    }
+    .proc-step:last-child { border-bottom: none; }
+    .step-num-wrap { display: flex; align-items: flex-start; padding-top: 4px; }
+    .step-n {
+      width: 44px; height: 44px; border-radius: 50%;
+      background: rgba(99,102,241,.1); border: 1px solid rgba(99,102,241,.25);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 13px; font-weight: 700; color: var(--accent);
+    }
+    .proc-step h3 { font-size: 17px; font-weight: 700; letter-spacing: -.4px; margin-bottom: 8px; }
+    .proc-step p { color: var(--text2); font-size: 14px; line-height: 1.75; }
+    .step-dur {
+      display: inline-flex; align-items: center; gap: 5px;
+      background: var(--bg3); border: 1px solid var(--border);
+      border-radius: 6px; padding: 3px 10px;
+      font-size: 11px; color: var(--text3); margin-top: 10px;
+    }
+
+    /* ── Testimonials ─────────────────────────── */
+    #testimonials { background: var(--bg2); }
+
+    .test-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+    @media(max-width:900px){ .test-grid{ grid-template-columns: 1fr 1fr; } }
+    @media(max-width:580px){ .test-grid{ grid-template-columns: 1fr; } }
+
+    .test-card {
+      background: var(--bg3); border: 1px solid var(--border);
+      border-radius: var(--r); padding: 28px;
+      display: flex; flex-direction: column;
+    }
+    .stars { display: flex; gap: 2px; margin-bottom: 16px; }
+    .star { color: var(--yellow); font-size: 14px; }
+    .test-q { font-size: 15px; line-height: 1.75; color: var(--text); margin-bottom: 22px; font-style: italic; flex: 1; }
+    .test-author { display: flex; align-items: center; gap: 12px; }
+    .t-avatar {
+      width: 40px; height: 40px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent), #a78bfa);
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 700; font-size: 13px; flex-shrink: 0;
+    }
+    .t-name { font-size: 14px; font-weight: 600; }
+    .t-info { font-size: 12px; color: var(--text2); margin-top: 2px; }
+
+    /* ── FAQ ──────────────────────────────────── */
+    #faq { background: var(--bg); }
+
+    .faq-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
+    @media(max-width:800px){ .faq-wrap{ grid-template-columns: 1fr; gap: 40px; } }
+
+    .faq-list { max-width: 580px; }
+    .faq-item { border-bottom: 1px solid var(--border); }
+    .faq-q {
+      width: 100%; background: none; border: none; color: var(--text);
+      font-family: inherit; font-size: 15px; font-weight: 600;
+      text-align: left; cursor: pointer; padding: 22px 0;
+      display: flex; align-items: center; justify-content: space-between; gap: 16px;
+    }
+    .faq-q .plus { font-size: 22px; color: var(--text3); flex-shrink: 0; transition: transform .25s; font-weight: 300; }
+    .faq-item.open .plus { transform: rotate(45deg); }
+    .faq-a {
+      color: var(--text2); font-size: 15px; line-height: 1.75;
+      max-height: 0; overflow: hidden;
+      transition: max-height .35s ease, padding-bottom .35s ease;
+    }
+    .faq-item.open .faq-a { max-height: 220px; padding-bottom: 20px; }
+
+    /* ── CTA ──────────────────────────────────── */
+    #cta { background: var(--bg2); text-align: center; }
+
+    .cta-box {
+      background: linear-gradient(140deg, rgba(99,102,241,.12) 0%, rgba(167,139,250,.06) 100%);
+      border: 1px solid rgba(99,102,241,.2);
+      border-radius: 20px; padding: 80px 40px;
+    }
+    @media(max-width:600px){ .cta-box{ padding: 48px 24px; } }
+    .cta-box h2 {
+      font-size: clamp(28px, 4vw, 52px);
+      font-weight: 800; letter-spacing: -1.5px; margin-bottom: 16px;
+    }
+    .cta-box p { color: var(--text2); font-size: 17px; max-width: 400px; margin: 0 auto 40px; }
+    .cta-acts { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+
+    /* ── Footer ───────────────────────────────── */
+    footer { border-top: 1px solid var(--border); padding: 44px 24px; background: var(--bg); }
+    .foot-inner {
+      max-width: 1100px; margin: 0 auto;
+      display: flex; align-items: center;
+      justify-content: space-between; flex-wrap: wrap; gap: 20px;
+    }
+    .foot-logo { font-weight: 800; font-size: 17px; }
+    .foot-logo span { color: var(--accent); }
+    .foot-links { display: flex; gap: 24px; list-style: none; }
+    .foot-links a { color: var(--text3); font-size: 13px; transition: color .2s; }
+    .foot-links a:hover { color: var(--text2); }
+    .foot-copy { color: var(--text3); font-size: 13px; }
+
+    /* ── WhatsApp Float ───────────────────────── */
+    .wa-float {
+      position: fixed; bottom: 28px; right: 28px; z-index: 500;
+      display: flex; flex-direction: column; align-items: flex-end; gap: 10px;
+    }
+    .wa-tip {
+      background: var(--bg2); border: 1px solid var(--border);
+      border-radius: 10px; padding: 10px 16px;
+      font-size: 13px; white-space: nowrap;
+      box-shadow: 0 4px 20px rgba(0,0,0,.3);
+      animation: fadeUp .5s ease; transition: opacity .4s;
+    }
+    @keyframes fadeUp { from{opacity:0;transform:translateY(8px)} to{opacity:1;transform:translateY(0)} }
+    .wa-btn {
+      width: 56px; height: 56px; border-radius: 50%; background: #25d366;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 4px 20px rgba(37,211,102,.4);
+      transition: transform .2s, box-shadow .2s;
+    }
+    .wa-btn:hover { transform: scale(1.1); box-shadow: 0 6px 28px rgba(37,211,102,.55); }
+    .wa-btn svg { width: 28px; height: 28px; fill: #fff; }
+
+    /* ── Responsive misc ──────────────────────── */
+    @media(max-width:768px){ .nav-links{ display: none; } }
+    @media(max-width:500px){
+      .stat { padding: 16px 14px; border-right: none; border-bottom: 1px solid var(--border); width: 50%; }
+      .stat:nth-child(odd){ border-right: 1px solid var(--border); }
+      .hero-stats{ flex-wrap: wrap; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ══ NAV ══════════════════════════════════════ -->
+<nav>
+  <div class="nav-inner">
+    <a href="#" class="nav-logo">Acuven<span>.</span></a>
+    <div class="nav-right">
+      <ul class="nav-links">
+        <li><a href="#services" data-zh="服务">Services</a></li>
+        <li><a href="#showcase" data-zh="案例">Work</a></li>
+        <li><a href="#process" data-zh="流程">Process</a></li>
+        <li><a href="#testimonials" data-zh="客户评价">Reviews</a></li>
+        <li><a href="https://wa.me/601136182335" class="nav-cta" data-zh="免费咨询">Free Consultation</a></li>
+      </ul>
+      <button id="langToggle" class="nav-lang" aria-label="Switch language">中文</button>
+    </div>
+  </div>
+</nav>
+
+<!-- ══ HERO ═════════════════════════════════════ -->
+<section id="hero">
+  <div class="container" style="position:relative;">
+    <div class="hero-glow"></div>
+
+    <div class="hero-badge">
+      <div class="dot"></div>
+      <span data-zh="接单中 · 团队位于马来西亚">Available for new projects &nbsp;·&nbsp; Based in Malaysia</span>
+    </div>
+
+    <h1 data-zh="定制业务系统<br><span class=&quot;hl&quot;>助力销售与运营升级</span>">Custom Business Systems That<br><span class="hl">Improve Sales &amp; Operations</span></h1>
+
+    <p class="hero-sub" data-zh="我们打造企业级 ERP、CRM 与 AI 驱动系统，消除人工操作，让您的业务规模化增长。">We build enterprise-grade ERP, CRM, and AI-powered systems that eliminate manual work and help your business scale.</p>
+
+    <div class="hero-tags">
+      <span class="tag" data-zh="CRM 系统">CRM Systems</span>
+      <span class="tag" data-zh="ERP 与库存">ERP &amp; Inventory</span>
+      <span class="tag" data-zh="AI 自动化">AI Automation</span>
+      <span class="tag" data-zh="定制看板">Custom Dashboards</span>
+      <span class="tag" data-zh="POS 系统">POS Systems</span>
+      <span class="tag" data-zh="内部工具">Internal Tools</span>
+    </div>
+
+    <div class="hero-actions">
+      <a href="https://wa.me/601136182335?text=Hi%20Acuven%20Technology%2C%20I%27m%20interested%20in%20discussing%20a%20project." class="btn-primary" data-zh="💬 聊聊您的项目">
+        💬 Discuss Your Project
+      </a>
+      <a href="#showcase" class="btn-outline" data-zh="查看作品 →">View Our Work →</a>
+    </div>
+
+    <div class="hero-stats">
+      <div class="stat">
+        <div class="stat-n">30+</div>
+        <div class="stat-l" data-zh="交付项目">Projects Delivered</div>
+      </div>
+      <div class="stat">
+        <div class="stat-n">15+</div>
+        <div class="stat-l" data-zh="年开发经验">Years Experience</div>
+      </div>
+      <div class="stat">
+        <div class="stat-n">20+</div>
+        <div class="stat-l" data-zh="满意客户">Happy Clients</div>
+      </div>
+      <div class="stat">
+        <div class="stat-n">100%</div>
+        <div class="stat-l" data-zh="按时交付率">On-Time Delivery</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ INDUSTRIES ════════════════════════════════ -->
+<section id="industries">
+  <div class="container">
+    <p class="ind-label" data-zh="服务于各行各业的企业客户">Trusted by businesses across industries</p>
+    <div class="ind-row">
+      <div class="ind-chip" data-zh="🛒 零售与电商">🛒 Retail &amp; E-Commerce</div>
+      <div class="ind-chip" data-zh="🚚 物流与供应链">🚚 Logistics &amp; Supply Chain</div>
+      <div class="ind-chip" data-zh="🏭 制造业">🏭 Manufacturing</div>
+      <div class="ind-chip" data-zh="🏥 医疗与诊所">🏥 Healthcare &amp; Clinic</div>
+      <div class="ind-chip" data-zh="🎓 教育">🎓 Education</div>
+      <div class="ind-chip" data-zh="🚗 汽车行业">🚗 Automotive</div>
+      <div class="ind-chip" data-zh="🏢 地产与物业">🏢 Property &amp; Real Estate</div>
+      <div class="ind-chip" data-zh="🍴 餐饮">🍴 F&amp;B &amp; Restaurant</div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ SERVICES ══════════════════════════════════ -->
+<section id="services">
+  <div class="container">
+    <div class="sec-head reveal">
+      <div class="label" data-zh="我们能做什么">What We Build</div>
+      <h2 data-zh="企业级解决方案，<br>为您的业务量身定制">Enterprise-grade solutions,<br>built for your business</h2>
+      <p data-zh="我们不仅写代码 —— 更构建能解决真实业务问题、带来可量化成果的系统。">We don't just write code — we build systems that solve real business problems and deliver measurable results.</p>
+    </div>
+    <div class="srv-grid">
+
+      <div class="srv-card reveal">
+        <div class="srv-icon">📊</div>
+        <h3 data-zh="CRM 客户管理系统">CRM Systems</h3>
+        <p data-zh="集中管理客户数据、追踪线索、自动化跟进，帮助销售团队更快成单。">Centralize customer data, track leads, and automate follow-ups. Built for your sales team to close deals faster.</p>
+        <div class="srv-feats">
+          <div class="srv-feat" data-zh="集中存储所有客户档案">Centralize all customer records</div>
+          <div class="srv-feat" data-zh="自动化跟进提醒">Automate follow-up reminders</div>
+          <div class="srv-feat" data-zh="销售管道与业绩追踪">Track sales pipeline &amp; performance</div>
+          <div class="srv-feat" data-zh="自定义报表与数据分析">Custom reports &amp; analytics</div>
+        </div>
+      </div>
+
+      <div class="srv-card reveal">
+        <div class="srv-icon">🏭</div>
+        <h3 data-zh="ERP 与库存管理">ERP &amp; Inventory Management</h3>
+        <p data-zh="一套系统统管库存、订单、供应商和运营 —— 告别表格与凭感觉决策。">Manage stock, orders, suppliers, and operations from one system — no more spreadsheets or guesswork.</p>
+        <div class="srv-feats">
+          <div class="srv-feat" data-zh="实时库存追踪">Real-time stock tracking</div>
+          <div class="srv-feat" data-zh="采购订单自动化">Purchase order automation</div>
+          <div class="srv-feat" data-zh="多仓库地点支持">Multi-location warehouse support</div>
+          <div class="srv-feat" data-zh="供应商与厂商管理">Supplier &amp; vendor management</div>
+        </div>
+      </div>
+
+      <div class="srv-card reveal">
+        <div class="srv-icon">🤖</div>
+        <h3 data-zh="AI 自动化">AI Automation</h3>
+        <p data-zh="用智能自动化减少人工，让 AI 处理重复任务，您的团队专注业务增长。">Reduce manual work with intelligent automation. Let AI handle repetitive tasks so your team can focus on growth.</p>
+        <div class="srv-feats">
+          <div class="srv-feat" data-zh="AI 客服聊天机器人">AI chatbot for customer support</div>
+          <div class="srv-feat" data-zh="报表自动生成">Automated report generation</div>
+          <div class="srv-feat" data-zh="智能数据提取（OCR）">Smart data extraction (OCR)</div>
+          <div class="srv-feat" data-zh="工作流触发与调度">Workflow triggers &amp; scheduling</div>
+        </div>
+      </div>
+
+      <div class="srv-card reveal">
+        <div class="srv-icon">💳</div>
+        <h3 data-zh="POS 与开票系统">POS &amp; Billing Systems</h3>
+        <p data-zh="快速可靠的 POS 收银，实时报表、发票管理、电子支付一体化。">Fast, reliable point-of-sale with real-time reporting, invoice management, and e-payment integration.</p>
+        <div class="srv-feats">
+          <div class="srv-feat" data-zh="多种支付方式支持">Multi-payment method support</div>
+          <div class="srv-feat" data-zh="自动生成发票与收据">Auto invoice &amp; receipt generation</div>
+          <div class="srv-feat" data-zh="每日销售报表">Daily sales reports</div>
+          <div class="srv-feat" data-zh="员工权限管理">Staff access control</div>
+        </div>
+      </div>
+
+      <div class="srv-card reveal">
+        <div class="srv-icon">📈</div>
+        <h3 data-zh="定制数据看板">Custom Dashboards</h3>
+        <p data-zh="实时商业智能看板，让运营状况与关键指标一目了然。">Real-time business intelligence dashboards that give instant visibility into your operations and KPIs.</p>
+        <div class="srv-feats">
+          <div class="srv-feat" data-zh="KPI 实时监控">Live KPI monitoring</div>
+          <div class="srv-feat" data-zh="多数据源整合">Multi-source data integration</div>
+          <div class="srv-feat" data-zh="按角色权限管控">Role-based access control</div>
+          <div class="srv-feat" data-zh="适配移动端">Mobile-friendly interface</div>
+        </div>
+      </div>
+
+      <div class="srv-card reveal">
+        <div class="srv-icon">🌐</div>
+        <h3 data-zh="企业官网">Business Websites</h3>
+        <p data-zh="专业、快速、转化优化的官网，代表您的品牌，持续带来客户线索。">Professional, fast, conversion-optimized websites that represent your brand and consistently generate leads.</p>
+        <div class="srv-feats">
+          <div class="srv-feat" data-zh="移动优先响应式设计">Mobile-first responsive design</div>
+          <div class="srv-feat" data-zh="SEO 优化">SEO optimized</div>
+          <div class="srv-feat" data-zh="CMS 后台便于内容更新">CMS for easy content updates</div>
+          <div class="srv-feat" data-zh="联系表单与线索收集">Contact form &amp; lead capture</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══ SHOWCASE ══════════════════════════════════ -->
+<section id="showcase">
+  <div class="container">
+    <div class="sec-head reveal" style="text-align:center;max-width:560px;margin:0 auto 56px;">
+      <div class="label" data-zh="案例展示">Our Work</div>
+      <h2 data-zh="让企业运转更高效的系统">Systems that make businesses run better</h2>
+      <p data-zh="以下为真实演示系统，<strong style=&quot;color:var(--text)&quot;>点击卡片可直接进入体验</strong>。每个项目都从零开始定制，不套模板。">Below are live demo systems — <strong style="color:var(--text)">click any card to try it yourself</strong>. Every project is custom-built from scratch, no templates.</p>
+    </div>
+    <div class="show-grid">
+
+      <!-- CRM Dashboard (wide) -->
+      <a href="https://crm.acuventech.com" target="_blank" rel="noopener" class="show-card wide reveal">
+        <div class="demo-badge"><span data-zh="↗ 体验演示">↗ Live Demo</span></div>
+        <div class="mock-area">
+          <div class="m-crm">
+            <div class="m-sidebar">
+              <div class="m-sb-row a"></div>
+              <div class="m-sb-row" style="width:80%"></div>
+              <div class="m-sb-row" style="width:65%"></div>
+              <div class="m-sb-row" style="width:75%"></div>
+              <div class="m-sb-row" style="width:55%"></div>
+              <div class="m-sb-row" style="width:70%;margin-top:12px"></div>
+              <div class="m-sb-row" style="width:60%"></div>
+            </div>
+            <div class="m-main">
+              <div class="m-stat-row">
+                <div class="m-stat">
+                  <div class="m-stat-v">RM 284K</div>
+                  <div class="m-stat-l" data-zh="月度营收">Monthly Revenue</div>
+                </div>
+                <div class="m-stat">
+                  <div class="m-stat-v">1,284</div>
+                  <div class="m-stat-l" data-zh="客户总数">Total Customers</div>
+                </div>
+                <div class="m-stat">
+                  <div class="m-stat-v" style="color:var(--green)">94%</div>
+                  <div class="m-stat-l" data-zh="客户留存率">Retention Rate</div>
+                </div>
+                <div class="m-stat">
+                  <div class="m-stat-v">47</div>
+                  <div class="m-stat-l" data-zh="活跃线索">Active Leads</div>
+                </div>
+              </div>
+              <div class="m-table">
+                <div class="m-row">
+                  <div class="m-dot" style="background:var(--accent)"></div>
+                  <div class="m-line" style="max-width:140px"></div>
+                  <div class="m-line" style="max-width:80px"></div>
+                  <div class="m-badge" data-zh="活跃">Active</div>
+                </div>
+                <div class="m-row">
+                  <div class="m-dot"></div>
+                  <div class="m-line" style="max-width:160px"></div>
+                  <div class="m-line" style="max-width:60px"></div>
+                  <div class="m-badge" data-zh="活跃">Active</div>
+                </div>
+                <div class="m-row">
+                  <div class="m-dot" style="background:var(--yellow)"></div>
+                  <div class="m-line" style="max-width:110px"></div>
+                  <div class="m-line" style="max-width:90px"></div>
+                  <div class="m-badge warn" data-zh="待处理">Pending</div>
+                </div>
+                <div class="m-row">
+                  <div class="m-dot"></div>
+                  <div class="m-line" style="max-width:150px"></div>
+                  <div class="m-line" style="max-width:70px"></div>
+                  <div class="m-badge" data-zh="活跃">Active</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="show-info">
+          <div class="show-tag" data-zh="CRM 系统">CRM System</div>
+          <h3 data-zh="客户关系管理看板">Customer Relationship Management Dashboard</h3>
+          <p data-zh="全栈 CRM，含线索追踪、销售管道、跟进自动化与营收分析 —— 为吉隆坡某批发分销企业打造。">Full-stack CRM with lead tracking, sales pipeline, follow-up automation, and revenue analytics — built for a wholesale distribution company in KL.</p>
+        </div>
+      </a>
+
+      <!-- ERP / Inventory -->
+      <a href="https://erp.acuventech.com" target="_blank" rel="noopener" class="show-card reveal">
+        <div class="demo-badge"><span data-zh="↗ 体验演示">↗ Live Demo</span></div>
+        <div class="mock-area">
+          <div class="m-chart">
+            <div class="m-chart-head">
+              <span data-zh="库存水平概览">Stock Level Overview</span>
+              <span style="color:var(--accent)" data-zh="本周 ↑12%">This Week ↑12%</span>
+            </div>
+            <div class="m-bars">
+              <div class="m-bar" style="height:42%"></div>
+              <div class="m-bar" style="height:67%"></div>
+              <div class="m-bar" style="height:53%"></div>
+              <div class="m-bar" style="height:88%"></div>
+              <div class="m-bar" style="height:48%"></div>
+              <div class="m-bar" style="height:95%"></div>
+              <div class="m-bar" style="height:72%"></div>
+            </div>
+            <div class="m-mini-row">
+              <div class="m-mini">
+                <div class="m-mini-v" style="color:var(--green)">843</div>
+                <div class="m-mini-l" data-zh="SKU 跟踪数">SKUs Tracked</div>
+              </div>
+              <div class="m-mini">
+                <div class="m-mini-v" style="color:var(--yellow)">12</div>
+                <div class="m-mini-l" data-zh="低库存预警">Low Stock Alert</div>
+              </div>
+              <div class="m-mini">
+                <div class="m-mini-v">3</div>
+                <div class="m-mini-l" data-zh="仓库数量">Warehouses</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="show-info">
+          <div class="show-tag" data-zh="ERP 系统">ERP System</div>
+          <h3 data-zh="库存与仓储管理">Inventory &amp; Warehouse Management</h3>
+          <p data-zh="多仓库实时库存追踪、自动触发采购订单、供应商集中管理。">Real-time stock tracking across multiple warehouses, auto purchase order triggers, and supplier management.</p>
+        </div>
+      </a>
+
+      <!-- AI Chatbot -->
+      <div class="show-card reveal">
+        <div class="demo-badge mock"><span data-zh="预览样例">Concept Preview</span></div>
+        <div class="mock-area">
+          <div class="m-chat">
+            <div class="m-chat-head">
+              <div class="m-avatar">🤖</div>
+              <div>
+                <div class="m-chat-name" data-zh="AI 助手">AI Assistant</div>
+                <div class="m-online" data-zh="● 7×24 在线">● Online 24/7</div>
+              </div>
+            </div>
+            <div class="m-msgs">
+              <div class="m-msg" data-zh="您好！今天我能帮您什么忙？">Hi! How can I help your business today?</div>
+              <div class="m-msg me" data-zh="A 产品的库存还有多少？">What's the stock for Product A?</div>
+              <div class="m-msg" data-zh="A 产品：库存 <strong style=&quot;color:var(--text)&quot;>284 件</strong>，安全库存 50 件。下批到货 <strong style=&quot;color:var(--text)&quot;>3 天后</strong>。📦">Product A: <strong style="color:var(--text)">284 units</strong> in stock. Reorder at 50 units. Next delivery in <strong style="color:var(--text)">3 days</strong>. 📦</div>
+            </div>
+          </div>
+        </div>
+        <div class="show-info">
+          <div class="show-tag" data-zh="AI 自动化">AI Automation</div>
+          <h3 data-zh="AI 商业助手 / 聊天机器人">AI Business Assistant &amp; Chatbot</h3>
+          <p data-zh="对接业务实时数据的智能聊天机器人 —— 7×24 回答咨询、生成报表、处理客户问询。">Intelligent chatbot connected to live business data — answers queries, generates reports, and handles customer enquiries 24/7.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══ PROCESS ═══════════════════════════════════ -->
+<section id="process">
+  <div class="container">
+    <div class="proc-wrap">
+
+      <div class="reveal">
+        <div class="label" data-zh="我们如何工作">How We Work</div>
+        <h2 style="font-size:clamp(28px,4vw,50px);font-weight:800;letter-spacing:-1.5px;line-height:1.1;margin-bottom:16px;" data-zh="流程清晰，<br>绝无意外">Simple process,<br>zero surprises</h2>
+        <p style="color:var(--text2);font-size:16px;line-height:1.75;max-width:380px;" data-zh="结构化、透明 —— 让您随时清楚进度。绝不拖延，绝无隐藏费用。">Structured and transparent — so you always know what's happening and when it'll be done. No delays, no hidden costs.</p>
+        <div style="margin-top:32px;background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:24px;">
+          <div style="font-size:13px;color:var(--text2);margin-bottom:10px;font-weight:600;" data-zh="项目典型周期">Typical project timeline</div>
+          <div style="font-size:30px;font-weight:900;letter-spacing:-1px;margin-bottom:4px;" data-zh="3 – 18 周">3 – 18 Weeks</div>
+          <div style="font-size:13px;color:var(--text2);" data-zh="从需求沟通到正式上线">From requirement discussion to live deployment</div>
+        </div>
+      </div>
+
+      <div class="proc-steps reveal">
+        <div class="proc-step">
+          <div class="step-num-wrap"><div class="step-n">01</div></div>
+          <div>
+            <h3 data-zh="需求沟通">Requirement Discussion</h3>
+            <p data-zh="免费咨询，深入了解您的业务、痛点与目标 —— 然后再开始任何开发。">Free consultation to understand your business, pain points, and goals — before writing a single line of code.</p>
+            <div class="step-dur" data-zh="📅 1–3 天">📅 1–3 days</div>
+          </div>
+        </div>
+        <div class="proc-step">
+          <div class="step-num-wrap"><div class="step-n">02</div></div>
+          <div>
+            <h3 data-zh="UI/UX 规划">UI/UX Planning</h3>
+            <p data-zh="我们设计原型与交互流程供您确认 —— 开发前您就能看到最终成品的样子。">We design wireframes and user flows for your approval — you see exactly what you're getting before development starts.</p>
+            <div class="step-dur" data-zh="📅 3–7 天">📅 3–7 days</div>
+          </div>
+        </div>
+        <div class="proc-step">
+          <div class="step-num-wrap"><div class="step-n">03</div></div>
+          <div>
+            <h3 data-zh="系统开发">System Development</h3>
+            <p data-zh="按里程碑迭代开发并定期同步进度，您可在任何节点提出调整。">We build your system with regular progress updates. Review at each milestone and request adjustments anytime.</p>
+            <div class="step-dur" data-zh="📅 2–15 周">📅 2–15 weeks</div>
+          </div>
+        </div>
+        <div class="proc-step">
+          <div class="step-num-wrap"><div class="step-n">04</div></div>
+          <div>
+            <h3 data-zh="测试与部署">Testing &amp; Deployment</h3>
+            <p data-zh="上线前完整测试，由我们负责服务器配置、部署上线和团队培训。">Thorough testing before going live. We handle server setup, deployment, and train your team to use the system.</p>
+            <div class="step-dur" data-zh="📅 3–7 天">📅 3–7 days</div>
+          </div>
+        </div>
+        <div class="proc-step">
+          <div class="step-num-wrap"><div class="step-n">05</div></div>
+          <div>
+            <h3 data-zh="长期支持">Long-Term Support</h3>
+            <p data-zh="上线不是终点。我们提供长期维护、Bug 修复与功能迭代，让系统持续稳定运行。">We don't disappear after launch. Ongoing maintenance, bug fixes, and feature updates keep your system running.</p>
+            <div class="step-dur" data-zh="📅 持续">📅 Ongoing</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══ TESTIMONIALS ══════════════════════════════ -->
+<section id="testimonials">
+  <div class="container">
+    <div class="sec-head reveal" style="text-align:center;max-width:500px;margin:0 auto 56px;">
+      <div class="label" data-zh="客户评价">Client Reviews</div>
+      <h2 data-zh="赢得马来西亚各地企业主的信赖">Trusted by business owners across Malaysia</h2>
+    </div>
+    <div class="test-grid">
+
+      <div class="test-card reveal">
+        <div class="stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div>
+        <p class="test-q" data-zh="“以前我们用 Excel 管理 500+ 客户。现在数据集中了，销售团队成交速度提升 40%。这是我们做过最值的投资。”">"Before this system, we were managing 500+ customers on Excel. Now everything is centralized and our sales team closes deals 40% faster. Best investment we've made."</p>
+        <div class="test-author">
+          <div class="t-avatar">JL</div>
+          <div>
+            <div class="t-name">Jason Lim</div>
+            <div class="t-info" data-zh="总监 · 吉隆坡批发分销公司">Director · Wholesale Distribution, KL</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="test-card reveal">
+        <div class="stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div>
+        <p class="test-q" data-zh="“库存系统彻底改造了我们的仓库管理。库存误差从 8% 降到接近 0。团队按时按预算交付，非常专业。”">"The inventory system completely transformed our warehouse. Stock discrepancies dropped from 8% to near zero. Acuven Technology delivered on time and within budget."</p>
+        <div class="test-author">
+          <div class="t-avatar">ST</div>
+          <div>
+            <div class="t-name">Sarah Tan</div>
+            <div class="t-info" data-zh="运营经理 · 槟城制造业">Operations Manager · Manufacturing, Penang</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="test-card reveal">
+        <div class="stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div>
+        <p class="test-q" data-zh="“AI 聊天机器人自动处理了我们 70% 的客户咨询，客服团队可以专注于复杂问题。非常专业，强烈推荐。”">"The AI chatbot handles 70% of our customer enquiries automatically. Our support team now focuses on complex issues. Very professional — highly recommended."</p>
+        <div class="test-author">
+          <div class="t-avatar">AC</div>
+          <div>
+            <div class="t-name">Alan Chong</div>
+            <div class="t-info" data-zh="CEO · 柔佛电商平台">CEO · E-Commerce Platform, Johor</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══ FAQ ═══════════════════════════════════════ -->
+<section id="faq">
+  <div class="container">
+    <div class="faq-wrap">
+
+      <div class="reveal">
+        <div class="label" data-zh="常见问题">FAQ</div>
+        <h2 style="font-size:clamp(28px,4vw,50px);font-weight:800;letter-spacing:-1.5px;line-height:1.1;margin-bottom:14px;" data-zh="常见问题，<br>坦诚回答">Common questions,<br>answered honestly</h2>
+        <p style="color:var(--text2);font-size:15px;line-height:1.75;max-width:340px;margin-bottom:28px;" data-zh="还有疑问？欢迎随时聊聊 —— 不收押金、不施压力。">Still have questions? We're happy to chat — no commitment, no pressure.</p>
+        <a href="https://wa.me/601136182335" class="btn-wa" style="display:inline-flex;">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+          <span data-zh="WhatsApp 咨询">Ask on WhatsApp</span>
+        </a>
+      </div>
+
+      <div class="faq-list reveal">
+        <div class="faq-item">
+          <button class="faq-q"><span data-zh="一个项目通常需要多久？">How long does a project take?</span> <span class="plus">+</span></button>
+          <div class="faq-a" data-zh="多数项目在 3–18 周内完成，具体取决于复杂度。简单的内部工具一般 2–3 周；完整的 ERP 或 CRM 系统通常需要 8–18 周。开工前我们会给出明确的时间表。">Most projects complete within 3–18 weeks depending on complexity. A simple internal tool may take 2–3 weeks, while a full ERP or CRM system typically takes 8–18 weeks. We give you a clear timeline before we start.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q"><span data-zh="定制一套系统大概多少钱？">How much does a custom system cost?</span> <span class="plus">+</span></button>
+          <div class="faq-a" data-zh="需求沟通后我们会给出透明的固定报价 —— 没有隐藏费用。简单系统起步 RM 3,000；企业级系统通常在 RM 10,000–50,000+ 之间。">We offer transparent fixed-price quotes after a requirement discussion — no hidden fees. Simple systems start from RM 3,000; enterprise systems typically range from RM 10,000–50,000+.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q"><span data-zh="上线后会培训我的团队吗？">Will you train my team after deployment?</span> <span class="plus">+</span></button>
+          <div class="faq-a" data-zh="会。每个项目都包含系统培训 —— 文档、操作演示，以及上线后的 WhatsApp 持续支持，确保您的团队能熟练使用系统。">Yes. Every project includes system training — documentation, walkthrough sessions, and ongoing WhatsApp support after launch. We make sure your team is confident using the system.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q"><span data-zh="提供长期维护服务吗？">Do you provide long-term maintenance?</span> <span class="plus">+</span></button>
+          <div class="faq-a" data-zh="当然。我们提供按月维护方案，包括 Bug 修复、更新和功能增强。我们与客户建立长期合作关系 —— 而不是一次性交付。">Absolutely. We offer monthly maintenance plans that include bug fixes, updates, and feature enhancements. We build long-term partnerships with our clients — not just one-off projects.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q"><span data-zh="可以对接我现有的软件吗？">Can you integrate with my existing software?</span> <span class="plus">+</span></button>
+          <div class="faq-a" data-zh="可以。我们支持与大多数现有系统对接 —— 财务软件（QuickBooks、SQL）、电商平台（Shopify、Lazada）、即时通讯（WhatsApp、Telegram）、支付网关等等。">Yes. We integrate with most existing systems — accounting software (QuickBooks, SQL), e-commerce (Shopify, Lazada), messaging (WhatsApp, Telegram), payment gateways, and more.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q"><span data-zh="上线后如果需要改动怎么办？">What if I need changes after launch?</span> <span class="plus">+</span></button>
+          <div class="faq-a" data-zh="我们会快速处理上线后的调整。小范围内的修改包含在维护中；较大的增强功能我们会给出透明报价，绝无意外收费。">We handle post-launch changes promptly. Minor tweaks within scope are covered. For larger enhancements, we provide transparent quotes with no surprise charges.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ CTA ════════════════════════════════════════ -->
+<section id="cta">
+  <div class="container">
+    <div class="cta-box reveal">
+      <div class="label" style="justify-content:center;" data-zh="立即开始">Start Today</div>
+      <h2 data-zh="准备好打造<br>您的业务系统了吗？">Ready to build your<br>business system?</h2>
+      <p data-zh="预约免费 30 分钟咨询。不收押金、不强推销 —— 我们只想了解您的真实需求。">Book a free 30-minute consultation. No commitment, no hard sell — just an honest conversation about what you need.</p>
+      <div class="cta-acts">
+        <a href="https://wa.me/601136182335?text=Hi%20Acuven%20Technology%2C%20I%27d%20like%20a%20free%20consultation%20about%20my%20project." class="btn-wa">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+          <span data-zh="预约免费咨询">Get Free Consultation</span>
+        </a>
+        <a href="mailto:contact@acuventech.com" class="btn-outline" data-zh="✉️ 发送邮件">✉️ Send Email</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ FOOTER ════════════════════════════════════ -->
+<footer>
+  <div class="foot-inner">
+    <a href="#" class="foot-logo">Acuven<span>.</span></a>
+    <ul class="foot-links">
+      <li><a href="#services" data-zh="服务">Services</a></li>
+      <li><a href="#showcase" data-zh="案例">Work</a></li>
+      <li><a href="#process" data-zh="流程">Process</a></li>
+      <li><a href="#faq" data-zh="常见问题">FAQ</a></li>
+    </ul>
+    <p class="foot-copy" data-zh="© 2026 Acuven Technology Sdn Bhd. 保留所有权利。">© 2026 Acuven Technology Sdn Bhd. All rights reserved.</p>
+  </div>
+</footer>
+
+<!-- ══ WHATSAPP FLOAT ════════════════════════════ -->
+<div class="wa-float">
+  <div class="wa-tip" id="waTip" data-zh="💬 免费咨询 —— 立即对话！">💬 Free consultation — chat now!</div>
+  <a href="https://wa.me/601136182335?text=Hi%20Acuven%20Technology%2C%20I%27m%20interested%20in%20building%20a%20system%20for%20my%20business."
+     class="wa-btn" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+    </svg>
+  </a>
+</div>
+
+<!-- ══ JS ═════════════════════════════════════════ -->
+<script>
+  // ── i18n: EN ⇄ ZH via data-zh attributes ────────────────────────
+  (function() {
+    const STORAGE_KEY = 'kp_lang';
+    const btn = document.getElementById('langToggle');
+    const els = document.querySelectorAll('[data-zh]');
+
+    // Snapshot each element's English innerHTML so we can swap back losslessly.
+    els.forEach(el => { el.dataset.en = el.innerHTML; });
+
+    function apply(lang) {
+      document.documentElement.lang = lang === 'zh' ? 'zh-CN' : 'en';
+      els.forEach(el => {
+        el.innerHTML = lang === 'zh' ? el.dataset.zh : el.dataset.en;
+      });
+      btn.textContent = lang === 'zh' ? 'EN' : '中文';
+      try { localStorage.setItem(STORAGE_KEY, lang); } catch (e) {}
+    }
+
+    // Determine initial language: stored preference > browser language > 'en'
+    let initial = 'en';
+    try { initial = localStorage.getItem(STORAGE_KEY) || initial; } catch (e) {}
+    if (!localStorage.getItem(STORAGE_KEY) && /^zh/i.test(navigator.language || '')) {
+      initial = 'zh';
+    }
+    apply(initial);
+
+    btn.addEventListener('click', () => {
+      apply(document.documentElement.lang.startsWith('zh') ? 'en' : 'zh');
+    });
+  })();
+
+  // Scroll reveal
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('visible'), i * 70);
+        obs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+  // FAQ accordion
+  document.querySelectorAll('.faq-item').forEach(item => {
+    item.querySelector('.faq-q').addEventListener('click', () => {
+      const open = item.classList.contains('open');
+      document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
+      if (!open) item.classList.add('open');
+    });
+  });
+
+  // Hide WA tooltip after 6s
+  setTimeout(() => {
+    const tip = document.getElementById('waTip');
+    if (tip) { tip.style.opacity = '0'; setTimeout(() => tip.remove(), 400); }
+  }, 6000);
+
+  // Active nav highlight on scroll
+  const secs = document.querySelectorAll('section[id]');
+  window.addEventListener('scroll', () => {
+    let cur = '';
+    secs.forEach(s => { if (window.scrollY >= s.offsetTop - 80) cur = s.id; });
+    document.querySelectorAll('.nav-links a').forEach(a => {
+      a.style.color = a.getAttribute('href') === '#' + cur ? '#fff' : '';
+    });
+  }, { passive: true });
+</script>
+
+</body>
+</html>
