@@ -1,101 +1,101 @@
-﻿# Deployment â€” acuventech.com
+# Deployment — acuventech.com
 
-> âš ï¸ çœŸå®žå…¬å¸å/åŸŸåè¯·æŒ‰ [REBRAND.md](../REBRAND.md) æ‰¹é‡æ›¿æ¢å ä½ç¬¦åŽå†éƒ¨ç½²ã€‚
+> ⚠️ 真实公司名/域名请按 [REBRAND.md](../REBRAND.md) 批量替换占位符后再部署。
 
-é™æ€ç«™ï¼ˆå•ä¸ª self-contained `index.html`ï¼‰ï¼Œéƒ¨ç½²åˆ°è‡ªæ‰˜ç®¡ VPSã€‚
+静态站（单个 self-contained `index.html`），部署到自托管 VPS。
 
 ```
 GitHub push main
-   â†“
+   ↓
 GitHub Actions (.github/workflows/deploy.yml)
-   â”œâ”€ stage: cp index.html + public/ â†’ stage/
-   â””â”€ rsync stage/  â”€â”€sshâ”€â”€â–¶  VPS:/srv/sites/acuventech.com/
-                                â†“
+   ├─ stage: cp index.html + public/ → stage/
+   └─ rsync stage/  ──ssh──▶  VPS:/srv/sites/acuventech.com/
+                                ↓
                          /srv/infra nginx
-                         acuventech.com.conf â†’ root /srv/sites/acuventech.com
-                                â†“
+                         acuventech.com.conf → root /srv/sites/acuventech.com
+                                ↓
                       https://acuventech.com
 ```
 
 ---
 
-## ä¸€ã€é¦–æ¬¡ VPS ç«¯åˆå§‹åŒ–ï¼ˆåªåšä¸€æ¬¡ï¼‰
+## 一、首次 VPS 端初始化（只做一次）
 
 ```bash
-# 1. å»ºé™æ€æ–‡ä»¶ç›®å½•
+# 1. 建静态文件目录
 sudo mkdir -p /srv/sites/acuventech.com
 sudo chown <DEPLOY_USER>:<DEPLOY_GROUP> /srv/sites/acuventech.com
 
-# 2. ç¡®ä¿ /srv/sites å·²æŒ‚å…¥ infra_nginx å®¹å™¨ï¼ˆå¦‚å·²æŒ‚è·³è¿‡ï¼‰
-#    åœ¨ /srv/infra/docker-compose.yml çš„ nginx volumes åŠ ä¸€è¡Œï¼š
+# 2. 确保 /srv/sites 已挂入 infra_nginx 容器（如已挂跳过）
+#    在 /srv/infra/docker-compose.yml 的 nginx volumes 加一行：
 #      - /srv/sites:/srv/sites:ro
-#    ç„¶åŽï¼šcd /srv/infra && sudo docker compose up -d nginx
+#    然后：cd /srv/infra && sudo docker compose up -d nginx
 
-# 3. å¤åˆ¶ nginx server_block
+# 3. 复制 nginx server_block
 sudo cp deploy/nginx/acuventech.com.conf /srv/infra/nginx/conf.d/
 
-# 4. æ ¡éªŒ + reload
+# 4. 校验 + reload
 sudo docker exec infra_nginx nginx -t
 sudo docker exec infra_nginx nginx -s reload
 ```
 
-> é€šé…ç¬¦ / Origin è¯ä¹¦è·¯å¾„å‡è®¾è·Ÿ `*.kelvinpeng.com` æ¨¡å¼ç›¸åŒã€‚è‹¥ä¸åŒï¼Œæ”¹ [acuventech.com.conf](nginx/acuventech.com.conf) é‡Œ `ssl_certificate` ä¸¤è¡Œã€‚
+> 通配符 / Origin 证书路径假设跟 `*.kelvinpeng.com` 模式相同。若不同，改 [acuventech.com.conf](nginx/acuventech.com.conf) 里 `ssl_certificate` 两行。
 
 ---
 
-## äºŒã€GitHub Secrets é…ç½®
+## 二、GitHub Secrets 配置
 
-åˆ° `https://github.com/<YOUR_ORG>/<YOUR_REPO>/settings/secrets/actions` åŠ  5â€“6 ä¸ª secretï¼š
+到 `https://github.com/<YOUR_ORG>/<YOUR_REPO>/settings/secrets/actions` 加 5–6 个 secret：
 
-| Secret name        | å€¼ï¼ˆç¤ºä¾‹ï¼‰                                                        | è¯´æ˜Ž |
+| Secret name        | 值（示例）                                                        | 说明 |
 |--------------------|--------------------------------------------------------------------|-----|
-| `SSH_HOST`         | VPS åŸŸåæˆ– IP                                                      | VPS åœ°å€ |
-| `SSH_USER`         | `ubuntu` / `deploy`                                                | SSH ç™»å½•ç”¨æˆ· |
-| `SSH_PORT`         | `22`                                                               | SSH ç«¯å£ |
-| `SSH_PRIVATE_KEY`  | `-----BEGIN OPENSSH PRIVATE KEY-----` èµ·å§‹çš„æ•´æ®µç§é’¥å†…å®¹           | GHA ç”¨æ¥ SSH è¿› VPS |
-| `DEPLOY_PATH`      | `/srv/sites/acuventech.com/`                                     | ç›®æ ‡ç›®å½•ï¼Œ**æœ«å°¾æ–œæ ä¸èƒ½çœ** |
-| `SITE_URL` *(å¯é€‰)* | `https://acuventech.com`                                         | éƒ¨ç½²åŽ smoke test çš„ URLï¼›ä¸è®¾åˆ™è·³è¿‡æµ‹è¯• |
+| `SSH_HOST`         | VPS 域名或 IP                                                      | VPS 地址 |
+| `SSH_USER`         | `ubuntu` / `deploy`                                                | SSH 登录用户 |
+| `SSH_PORT`         | `22`                                                               | SSH 端口 |
+| `SSH_PRIVATE_KEY`  | `-----BEGIN OPENSSH PRIVATE KEY-----` 起始的整段私钥内容           | GHA 用来 SSH 进 VPS |
+| `DEPLOY_PATH`      | `/srv/sites/acuventech.com/`                                     | 目标目录，**末尾斜杠不能省** |
+| `SITE_URL` *(可选)* | `https://acuventech.com`                                         | 部署后 smoke test 的 URL；不设则跳过测试 |
 
-> ä¸Ž profile_os / erp_os / crm_os ç”¨åŒä¸€å° VPS æ—¶ï¼Œå¯å¤ç”¨åŒä¸€ç»„ SSH secretsï¼Œåªéœ€æ–°å¢ž `DEPLOY_PATH` å’Œ `SITE_URL`ã€‚
+> 与 profile_os / erp_os / crm_os 用同一台 VPS 时，可复用同一组 SSH secrets，只需新增 `DEPLOY_PATH` 和 `SITE_URL`。
 
 ---
 
-## ä¸‰ã€è§¦å‘éƒ¨ç½²
+## 三、触发部署
 
 ```bash
 git push origin main
 ```
 
-æˆ–åœ¨ GitHub Actions é¡µé¢ç‚¹ "Run workflow"ï¼ˆå·²å¼€å¯ workflow_dispatchï¼‰ã€‚
+或在 GitHub Actions 页面点 "Run workflow"（已开启 workflow_dispatch）。
 
 ---
 
-## å››ã€å›žæ»š
+## 四、回滚
 
-**A. å›žæ»šåˆ°ä¸Šä¸€ä¸ª git commit**ï¼š
+**A. 回滚到上一个 git commit**：
 ```bash
-git revert HEAD && git push   # è‡ªåŠ¨è§¦å‘é‡æ–°éƒ¨ç½²
+git revert HEAD && git push   # 自动触发重新部署
 ```
 
-**B. æ–‡ä»¶çº§å¿«ç…§**ï¼ˆæŽ¨èåŠ è¿› cronï¼‰ï¼š
+**B. 文件级快照**（推荐加进 cron）：
 ```bash
-# éƒ¨ç½²å‰å…ˆåœ¨ VPS ä¸Šå¤‡ä»½
+# 部署前先在 VPS 上备份
 sudo rsync -a /srv/sites/acuventech.com/ /srv/sites/backups/acuventech.com-$(date +%F-%H%M)/
-# å›žæ»š
+# 回滚
 sudo rsync -a --delete /srv/sites/backups/acuventech.com-2026-05-15-1430/ /srv/sites/acuventech.com/
 ```
 
 ---
 
-## äº”ã€æœ¬åœ°é¢„è§ˆ
+## 五、本地预览
 
-é¡µé¢æ˜¯ self-contained HTMLï¼Œæ— éœ€ä»»ä½•æž„å»ºï¼š
+页面是 self-contained HTML，无需任何构建：
 
 ```bash
-# ä»»é€‰ä¸€ç§ç®€å• HTTP server
+# 任选一种简单 HTTP server
 python -m http.server 8000      # http://localhost:8000
-# æˆ–
+# 或
 npx serve .                     # http://localhost:3000
 ```
 
-> ç›´æŽ¥åŒå‡» `index.html` ä¹Ÿè¡Œï¼Œåªæ˜¯å­—ä½“ preconnect ç­‰éœ€è¦ HTTP åè®®æ‰èƒ½å®Œå…¨ç”Ÿæ•ˆã€‚
+> 直接双击 `index.html` 也行，只是字体 preconnect 等需要 HTTP 协议才能完全生效。

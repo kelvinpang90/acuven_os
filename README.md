@@ -1,42 +1,42 @@
-﻿# Acuven Technology â€” Landing Site
+# Acuven Technology — Landing Site
 
-å…¬å¸å®˜ç½‘ï¼Œå•é¡µé™æ€ç«™ï¼ˆself-contained `index.html` + å†…è” CSS/JSï¼‰ã€‚
+公司官网，单页静态站（self-contained `index.html` + 内联 CSS/JS）。
 
-## å¿«é€Ÿå¼€å§‹
+## 快速开始
 
-1. **æ”¹å“ç‰Œ**ï¼šè·Ÿ [REBRAND.md](REBRAND.md) ä¸€é”®æ›¿æ¢å ä½ç¬¦ï¼ˆå…¬å¸å / åŸŸå / é‚®ç®± / WhatsApp ç­‰ï¼‰ã€‚
-2. **æœ¬åœ°é¢„è§ˆ**ï¼š`python -m http.server 8000` â†’ http://localhost:8000
-3. **éƒ¨ç½²**ï¼šè·Ÿ [deploy/README.md](deploy/README.md) é… GitHub Secrets + VPS åˆå§‹åŒ–ï¼Œä¹‹åŽ `git push origin main` è‡ªåŠ¨éƒ¨ç½²ã€‚
+1. **改品牌**：跟 [REBRAND.md](REBRAND.md) 一键替换占位符（公司名 / 域名 / 邮箱 / WhatsApp 等）。
+2. **本地预览**：`python -m http.server 8000` → http://localhost:8000
+3. **部署**：跟 [deploy/README.md](deploy/README.md) 配 GitHub Secrets + VPS 初始化，之后 `git push origin main` 自动部署。
 
-## æŠ€æœ¯é€‰åž‹
+## 技术选型
 
-- **é›¶æž„å»º**ï¼šå•æ–‡ä»¶ HTMLï¼Œå†…è” CSS + åŽŸç”Ÿ JSã€‚`<5 ç§’`ä»Ž git push åˆ°ä¸Šçº¿
-- **i18n**ï¼šEN â‡„ ZH é€šè¿‡ `data-zh` å±žæ€§ + JS åˆ‡æ¢ï¼Œæ— ä¾èµ–
-- **å“åº”å¼**ï¼šç§»åŠ¨ç«¯ / å¹³æ¿ / æ¡Œé¢é€‚é…
-- **SEO**ï¼šå®Œæ•´ meta æ ‡ç­¾ã€Open Graphã€Twitter Card
-- **éƒ¨ç½²**ï¼šGitHub Actions â†’ rsync â†’ è‡ªæ‰˜ç®¡ Nginx VPS
+- **零构建**：单文件 HTML，内联 CSS + 原生 JS。`<5 秒`从 git push 到上线
+- **i18n**：EN ⇄ ZH 通过 `data-zh` 属性 + JS 切换，无依赖
+- **响应式**：移动端 / 平板 / 桌面适配
+- **SEO**：完整 meta 标签、Open Graph、Twitter Card
+- **部署**：GitHub Actions → rsync → 自托管 Nginx VPS
 
-## æ–‡ä»¶ç»“æž„
+## 文件结构
 
 ```
-â”œâ”€â”€ index.html                  â† æ•´ä¸ªç½‘ç«™ï¼ˆself-containedï¼‰
-â”œâ”€â”€ public/                     â† é™æ€èµ„æºï¼ˆfaviconã€og å›¾ç­‰ï¼Œå¯é€‰ï¼‰
-â”œâ”€â”€ .github/workflows/
-â”‚   â””â”€â”€ deploy.yml              â† CI/CD pipelineï¼ˆpush â†’ rsync â†’ smoke testï¼‰
-â”œâ”€â”€ deploy/
-â”‚   â”œâ”€â”€ README.md               â† VPS ç«¯åˆå§‹åŒ– + secrets é…ç½®è¯´æ˜Ž
-â”‚   â””â”€â”€ nginx/
-â”‚       â””â”€â”€ acuventech.com.conf  â† nginx server_block
-â”œâ”€â”€ REBRAND.md                  â† å ä½ç¬¦ä¸€è§ˆ + ä¸€é”®æ›¿æ¢è„šæœ¬
-â””â”€â”€ README.md                   â† æœ¬æ–‡ä»¶
+├── index.html                  ← 整个网站（self-contained）
+├── public/                     ← 静态资源（favicon、og 图等，可选）
+├── .github/workflows/
+│   └── deploy.yml              ← CI/CD pipeline（push → rsync → smoke test）
+├── deploy/
+│   ├── README.md               ← VPS 端初始化 + secrets 配置说明
+│   └── nginx/
+│       └── acuventech.com.conf  ← nginx server_block
+├── REBRAND.md                  ← 占位符一览 + 一键替换脚本
+└── README.md                   ← 本文件
 ```
 
-## åŽç»­å¯æ‰©å±•
+## 后续可扩展
 
-å½“å‰æ˜¯ MVPã€‚åŽç»­å¦‚éœ€å¯è¡¥ï¼š
+当前是 MVP。后续如需可补：
 
-- **About / Team / Careers åŒºå—**ï¼šå†…å®¹è¡¥å…¨åŽå¢žåŠ  section
-- **çœŸå®žæˆªå›¾æ›¿æ¢ mockup**ï¼šShowcase åŒºç›®å‰æ˜¯ div æ¨¡æ‹Ÿï¼Œå¯æ¢ä¸ºäº§å“çœŸå®žæˆªå›¾
-- **è¡¨å•æ”¶é›†**ï¼šè”ç³»è¡¨å•ï¼ˆå¯ç”¨ web3forms / formspreeï¼Œå…åŽç«¯ï¼‰
-- **Cookie / Analytics**ï¼šPlausibleã€Cloudflare Web Analytics ç­‰æ— ä¾µå…¥æ–¹æ¡ˆ
-- **Sitemap / Robots**ï¼šSEO ä¸¥è°¨åŒ–æ—¶åŠ 
+- **About / Team / Careers 区块**：内容补全后增加 section
+- **真实截图替换 mockup**：Showcase 区目前是 div 模拟，可换为产品真实截图
+- **表单收集**：联系表单（可用 web3forms / formspree，免后端）
+- **Cookie / Analytics**：Plausible、Cloudflare Web Analytics 等无侵入方案
+- **Sitemap / Robots**：SEO 严谨化时加
