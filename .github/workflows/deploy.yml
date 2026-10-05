@@ -28,6 +28,7 @@ jobs:
         run: |
           mkdir -p stage
           cp index.html stage/
+          cp privacy.html stage/
           if [ -d public ] && [ "$(ls -A public)" ]; then
             cp -r public/. stage/
           fi
